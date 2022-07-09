@@ -194,7 +194,8 @@ class FlutterSoundRecorder {
                 this.currentRecordPath = path;
                 var chunks = [];
                 var mediaStream;
-                mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                const audioTrackConstraints = {sampleRate: {ideal: sampleRate}, channelCount: {ideal: numChannels}}
+                mediaStream = await navigator.mediaDevices.getUserMedia({ audio: audioTrackConstraints, video: false });
                 me.mediaStream = mediaStream;
 
                 const audioContext = new AudioContext();
